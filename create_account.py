@@ -2,6 +2,12 @@ from objects import Employee, AdminUser
 
 
 def create_user_account(app):
+    """Prompt the user to create a new account, either as an Employee or Admin.
+
+    Args:
+        app: An object containing the application context,
+             including the current user and method to display the menu.
+    """
     while True:
         user_level = input(
             """Which account would you like to create? (Enter 1 or 2)
@@ -46,6 +52,14 @@ def create_user_account(app):
 
 
 def is_email_registered(email):
+    """Check if the given email is already registered in either the employees or admins file.
+
+    Args:
+        email (str): The email address to check.
+
+    Returns:
+        bool: True if the email is found in either file, False otherwise.
+    """
     try:
         with open("all_employees.txt", "r") as emp_file:
             for line in emp_file:
@@ -66,6 +80,13 @@ def is_email_registered(email):
 
 
 def create_employee_account(app, new_user):
+    """Create a new employee account and log in the user.
+
+    Args:
+        app: An object containing the application context,
+             including the current user.
+        new_user (Employee): The new Employee object to be created.
+    """
     with open("all_employees.txt", "a") as file:
         file.write(
             f"{new_user.first_name},{new_user.last_name},{new_user.email},{new_user.password}\n"
@@ -75,6 +96,13 @@ def create_employee_account(app, new_user):
 
 
 def create_admin_account(app, new_user):
+    """Create a new admin account and log in the user.
+
+    Args:
+        app: An object containing the application context,
+             including the current user.
+        new_user (AdminUser): The new AdminUser object to be created.
+    """
     with open("all_admin.txt", "a") as file:
         file.write(
             f"{new_user.first_name},{new_user.last_name},{new_user.email},{new_user.password}\n"

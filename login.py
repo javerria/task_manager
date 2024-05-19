@@ -2,6 +2,12 @@ from objects import Employee, AdminUser
 
 
 def login(app):
+    """Prompt the user to enter their email and password, and log them in as an admin or employee.
+
+    Args:
+        app: An object containing the application context,
+             including the current user.
+    """
     email = input("Enter your email address: ")
     password = input("Enter your password: ")
 
@@ -21,6 +27,15 @@ def login(app):
 
 
 def is_admin(email, password):
+    """Check if the given email and password correspond to an admin.
+
+    Args:
+        email (str): The email address to check.
+        password (str): The password to check.
+
+    Returns:
+        bool: True if the email and password match an admin, False otherwise.
+    """
     with open("all_admin.txt", "r") as file:
         for line in file:
             admin_data = line.strip().split(",")
@@ -30,6 +45,15 @@ def is_admin(email, password):
 
 
 def is_employee(email, password):
+    """Check if the given email and password correspond to an employee.
+
+    Args:
+        email (str): The email address to check.
+        password (str): The password to check.
+
+    Returns:
+        bool: True if the email and password match an employee, False otherwise.
+    """
     with open("all_employees.txt", "r") as file:
         for line in file:
             employee_data = line.strip().split(",")
@@ -39,6 +63,15 @@ def is_employee(email, password):
 
 
 def load_user_from_file(filename, email):
+    """Load a user from the given file by their email address.
+
+    Args:
+        filename (str): The name of the file to load the user from.
+        email (str): The email address of the user to load.
+
+    Returns:
+        Employee or AdminUser: An instance of Employee or AdminUser if found, None otherwise.
+    """
     with open(filename, "r") as file:
         for line in file:
             user_data = line.strip().split(",")

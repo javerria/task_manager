@@ -2,6 +2,10 @@ from objects import Task, AdminUser
 
 
 def create_task(app):
+    """Prompt the user to enter a task title and description, 
+    create a new Task object, and save it to the file.
+    
+    """
     task_title = input("Please enter a title: ")
     task_description = input("Please enter a description: ")
     new_task = Task(task_title, task_description)
@@ -10,6 +14,9 @@ def create_task(app):
 
 
 def write_task_to_file(app, task):
+    """Write a single task to the tasks file.
+
+    """
     with open(app.all_tasks_file, "a") as file:
         file.write(
             f"{task.task_name},{task.task_description},{1 if task.task_is_complete else 0}\n"
@@ -17,6 +24,10 @@ def write_task_to_file(app, task):
 
 
 def edit_task(app):
+    """Prompt the user to select a task and enter a new description,
+    then update the task description in the file.
+
+    """
     view_all_tasks(app)
     index = (
         int(input("Enter the serial number of the task you would like to edit: ")) - 1
@@ -30,6 +41,9 @@ def edit_task(app):
 
 
 def update_task_in_file(app, index, new_description):
+    """Update the description of a specific task in the file.
+
+    """
     tasks = read_all_tasks(app)
     if tasks:
         tasks[index].task_description = new_description
@@ -37,6 +51,9 @@ def update_task_in_file(app, index, new_description):
 
 
 def update_task_status(app):
+    """Toggle the completion status of a selected task and update the file.
+
+    """
     view_all_tasks(app)
     index = (
         int(
@@ -58,6 +75,9 @@ def update_task_status(app):
 
 
 def view_all_tasks(app):
+    """Display all tasks with their current statuses.
+
+    """
     tasks = read_all_tasks(app)
     if not tasks:
         print("No tasks available.")
@@ -70,6 +90,9 @@ def view_all_tasks(app):
 
 
 def read_all_tasks(app):
+    """Read all tasks from the tasks file and return them as a list of Task objects.
+
+    """
     tasks = []
     try:
         with open(app.all_tasks_file, "r") as file:
@@ -87,11 +110,17 @@ def read_all_tasks(app):
 
 
 def is_valid_task_index(app, index):
+    """Check if the given index is valid for the list of tasks.
+
+    """
     tasks = read_all_tasks(app)
     return 0 <= index < len(tasks)
 
 
 def write_tasks_to_file(app, tasks):
+    """Write the list of tasks to the tasks file, overwriting existing content.
+
+    """
     with open(app.all_tasks_file, "w") as file:
         for task in tasks:
             file.write(
@@ -100,6 +129,9 @@ def write_tasks_to_file(app, tasks):
 
 
 def assign_task(app):
+    """Assign a task to an employee by email. Only admin users can assign tasks.
+
+    """
     if not isinstance(app.current_user, AdminUser):
         print("Only admin users can assign tasks.")
         return
@@ -120,6 +152,9 @@ def assign_task(app):
 
 
 def delete_task(app):
+    """Delete a task from the list. Only admin users can delete tasks.
+    
+    """
     if not isinstance(app.current_user, AdminUser):
         print("Only admin users can delete tasks.")
         return

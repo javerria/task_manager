@@ -5,6 +5,7 @@ import tasks_logic
 
 class TaskManagerApplication:
     def __init__(self):
+        """Initialize the TaskManagerApplication instance."""
         self.version = "1.0"
         self.company_name = "Iqtidar"
         self.current_user = None
@@ -12,6 +13,7 @@ class TaskManagerApplication:
         self.display_menu()
 
     def display_menu(self):
+        """Display the main menu for the task manager application and handle user input."""
         while True:
             if self.current_user:
                 print(
@@ -70,4 +72,5 @@ class TaskManagerApplication:
 if __name__ == "__main__":
 
     def start_app():
+        """Start the Task Manager application."""
         TaskManagerApplication()
