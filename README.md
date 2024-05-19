@@ -47,7 +47,7 @@ This task manager allows for the following functionalities:
 
 1. **Clone the Repository**:
     ```sh
-    git clone https://github.com/your-username/task_manager.git
+    git clone https://github.com/javerria/task_manager.git
     cd task_manager
     ```
 
