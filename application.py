@@ -69,8 +69,6 @@ class TaskManagerApplication:
                     print("Invalid choice. Please try again.")
 
 
-if __name__ == "__main__":
-
-    def start_app():
-        """Start the Task Manager application."""
-        TaskManagerApplication()
+def start_app():
+    """Start the Task Manager application."""
+    TaskManagerApplication()
