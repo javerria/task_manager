@@ -15,6 +15,7 @@ This task manager allows for the following functionalities:
   - Assign tasks to employees (admin only).
   - Delete tasks (admin only).
 
+Find this project on https://github.com/javerria/task_manager
 
 """
 if __name__ == "__main__":
